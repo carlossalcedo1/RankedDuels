@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const config = require('./setup.json');
 const fs = require('fs');
+const env = require('./main.env')
 // filesystem stuff to connect to different files nothing to do with discord bot.
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
