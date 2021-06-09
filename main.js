@@ -1,7 +1,6 @@
 const Discord = require('discord.js');
 const config = require('./setup.json');
 const fs = require('fs');
-const env = require('./main.env')
 // filesystem stuff to connect to different files nothing to do with discord bot.
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -30,9 +29,25 @@ client.on('message', message => {
 	}
 
 });
+client.on('guildMemberAdd', guildMember => {
+  const playerRole = guildMember.guild.roles.cache.find(role => role.name === 'Member');
+  try {
+    guildMember.roles.add(playerRole);
+    guildMember.guild.channels.get(config.configChannel).send('Welcome test to our server');
+  }catch(error) {
+    console.error(error);
+    guildMember.guild.channels.get('783696734165532702').send('Error with join event handler!');
+  }
+});
+
 client.once('ready', () => {
-	console.log('Bot Online - ' + config.name + '\nLogged in with:' + config.token + ', prefix: ' + config.prefix);
-	client.user.setActivity('TerminalMC.tk', { type: 'PLAYING' });
+  client.user.setActivity('TerminalMC.tk', { type: 'PLAYING' });
+  if (config.verbose) {
+	console.log(`Setup.json Verbose: \n Prefix: ${config.prefix} \n Name: ${config.name} \n Token: ${config.token} \n Welcome Channel: ${config.configChannel} \n`);
+  console.log(`Connected to DiscordAPI and is registering "FS" node.js module! \nRegistering ${cmdFiles.length} Commands!`)
+  }else{
+    console.log('Now Online! - Verbose is off')
+  }
 });
 
 // that goes in the end

@@ -1,5 +1,7 @@
 {
+    "verbose": true,
     "name": "TestBot",
     "prefix": "-",
-    "token": ""
+    "token": "ODQwMjkwOTc0MjgxMjM2NTAw.YJWD9A.YCB_QqJwuvLKC9rEGL2aLNmEC08",
+    "configChannel": "753662437307318445"
 }

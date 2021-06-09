@@ -1,8 +1,7 @@
+const Discord = require('discord.js');
 module.exports = {
   name: 'kick',
   run (message, args) {
-  const Discord = require('discord.js');
-  const { Client, MessageEmbed } = require('discord.js');
   const member = message.mentions.users.first();
   if (member) {
     if (message.member.hasPermission("KICK_MEMBERS")) {
@@ -15,8 +14,6 @@ module.exports = {
           console.error(error);
           message.reply(error);
         }
-    }else{
-      message.channel.send('No Permission ( ' + taggedId + ' )');
     }
   }else{
     message.channel.send('No Members Selected!')
